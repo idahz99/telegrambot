@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="en" >
+<head>
+<title>Register page</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <style>
+div {
+   padding: 50px;
+ }
+</style>
+
+</head>
+<body style="background-color:#F3E3A1;" >
+
+<style>
+*{
+margin:0;
+padding:0;
+}
+.navbar{
+align-items:center;
+display:flex;
+margin:-20px auto;
+}
+
+ul{
+ flex:1;
+ text-align: right;
+
+}ul li {
+display: inline-block;
+list-style:none;
+padding:10px
+
+
+}ul li a{
+color: #000;
+text-decoration: none;
+border: 1px solid #000;
+padding:5px 10px;
+}
+ul li a:hover{
+background-color: #63dfe4;
+
+}
+</style>
+
+<style>
+input[type=text], select {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=number], select {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width:30%;
+  background-color: #B67F2D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+
+  cursor: pointer;
+}
+form{
+    padding: 10px;
+}
+input[type=tel] {
+    width: 30%;
+
+    padding: 14px 20px;
+    margin: 8px 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+</style>
+
+<style>
+body {
+    background-image: url("/images/background2.png ");
+background-position:center bottom 75% ;
+
+}
+</style>
+<header >
+
+<div class="navbar">
+<h1 style ="color:white" >PKOB </h1>
+<ul>
+<li><a href="{% url 'register' %}">Register </a></li>
+<li><a href="{% url 'peopleinfo' %}">Report </a></li>
+</ul>
+</div>
+
+
+<style>
+.container{
+text-align: center;
+   background-color: white;
+ width:400px ;
+    margin: auto;
+   border-radius: 10px;
+}
+</style>
+
+
+<div class ="container">
+
+<h2>Register User</h2>
+
+<form action='.' method="POST">
+{% csrf_token %}
+
+<label for="fullname"> Name:</label><br>
+<input type="text"  name="fullname" required  > <br>
+
+<label for="icNo">IC Number:</label><br>
+<input type="tel" name="icNo"  minlength="12"  maxlength="12" required> <br>
+
+
+
+<label for="pNum">Phone Number:</label><br>
+<input type="tel"
+ name="pNum"  placeholder="0122340987" pattern="[0-9]{3}[0-9]{3}[0-9]{4}"  minlength="10"   required ><br>
+ <input type="Submit" value = "Register" /></form><br>
+
+{% for message in messages %}
+<p style="color:red">{{message}}</p>
+{% endfor %}
+
+</form>
+
+</div>
+
+</header>
+</body>
+</html>

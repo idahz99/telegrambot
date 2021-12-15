@@ -1,0 +1,117 @@
+<!doctype html>
+{% extends "App_Pkob/base.html" %}
+
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+
+
+<title>Report</title>
+
+
+
+
+   {% block content %}
+<script type="text/javascript">
+
+</script>
+
+
+ <style>
+
+ .alert {
+  border-radius: 25px;
+  padding: 20px;
+  background-color: #ffc066;
+  color: Black;
+  width: 400px;
+  margin: auto;
+}
+
+.xbutton {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.xbutton:hover {
+  color: black;
+}
+
+  table{
+      border-collapse: collapse;
+      width:80%;
+      font-family:'Raleway', sans-serif ;
+      font-size: 30px;
+      text-align: left;
+      margin:auto;
+  }
+  th{
+background-color:#B67F2D ;
+      color:white;
+  }
+  tr:nth-child(even){background-color:#f2f2f2}
+
+
+ </style>
+
+
+
+</head>
+
+<body>
+{% for message in messages %}
+
+ <div class="alert">
+  <span class="xbutton" onclick="this.parentElement.style.display='none';">&times;</span>
+  {{message}}
+</div>
+{% endfor %}
+
+<h1 style="text-align: center">List of People</h1>
+<table>
+    <tr>
+        <th>IC No</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Age</th>
+    </tr>
+    {% for people in people_list %}
+
+        <tr data-href = "peopleInfo.html">
+        <td>{{ people.IcNo}}</td>
+        <td> {{ people.Name }}</td>
+        <td>{{ people.Phone}}</td>
+        <td> {{year2.pop}}</td>
+        <td><a href="{% url "person-info" people.IcNo %}"><button style="border-radius: 10px; height: 30px;width:50px ; color:#B67F2D "  type="button"  >Edit</button></a></td>
+
+        <td><a href="{% url "delete-person" people.IcNo %}"><button style="border-radius: 10px; height: 30px;width:50px ; color:Red "  type="button" onclick="return confirm('Are you sure you want to delete this villager ?')">Delete1 </button></a></td>
+        <td><a href="{% url "delete-person" people.IcNo %}"><button style="border-radius: 10px; height: 30px;width:50px ; color:#B67F2D "  type="button">Delete</button></a></td>
+        </tr>
+        {% endfor %}
+</table>
+<br>
+
+{% for message in messages %}
+
+ <div class="alert">
+  <span class="xbutton" onclick="this.parentElement.style.display='none';">&times;</span>
+  {{message}}
+</div>
+{% endfor %}
+
+
+</body>
+{% endblock content %}
+
+
+</html>

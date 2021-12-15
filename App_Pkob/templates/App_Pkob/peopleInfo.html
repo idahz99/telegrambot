@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% extends "App_Pkob/base.html" %}
+<html lang="en">
+
+<head>
+   <title>People Page</title>
+    <meta charset="UTF-8">
+
+     {{ person.IcNo }}
+</head>
+
+
+{% block content %}
+   <head>
+   <title>People Page</title>
+   </head>
+    <style>
+input[type=text], select {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width:30%;
+  background-color: #B67F2D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+
+  cursor: pointer;
+}
+form{
+    padding: 10px;
+}
+input[type=tel] {
+    width: 30%;
+
+    padding: 14px 20px;
+    margin: 8px 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.contain{
+ text-align: center;
+   background-color: white;
+ width:400px ;
+    margin: auto;
+   border-radius: 10px;
+}
+</style>
+<div class=" contain">
+
+<form action= "{% url "edit-info" %}" method="POST">
+{% csrf_token %}
+
+<label for="fullname"> Name:</label><br>
+<input type="text"  name="fullname" value = {{ person.Name }} readonly > <br>
+
+<label for="icNo">IC Number:</label><br>
+<input type="text" name="icNo" value = {{ person.IcNo }} readonly  > <br>
+
+<label for="pNum">Phone Number:</label><br>
+<input type="tel"  name="pNum" id="pNum" value = {{ person.Phone }} pattern="[0-9]{3}[0-9]{3}[0-9]{4}" maxlength="10" required ><br>
+
+<input type="Submit" value="Save" />
+</form>
+
+
+</body>
+</div>
+{% endblock content %}
+</html>
+

@@ -78,16 +78,13 @@ WSGI_APPLICATION = 'PKOB.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd3n5m6kt2bdm88',
-        'USER': 'tavvcmtwegtrvo',
-        'PASSWORD': 'a05879c48af6a997c1400fa7d91b6e29a4b83e2c18452029d46a29243a7165fa',
-
-        'HOST': 'ec2-34-232-144-162.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+import dj_database_url
+db_from_env =dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 

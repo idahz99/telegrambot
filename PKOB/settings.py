@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ehne66naxmbu)axdoas6p6uivyf=6yi%tt484-lf5rj7090iqf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','pkobweb.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'pkobweb.herokuapp.com']
 
 
 # Application definition
@@ -87,12 +87,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-import dj_database_url
-db_from_env =dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
-
-
 
 
 # Password validation

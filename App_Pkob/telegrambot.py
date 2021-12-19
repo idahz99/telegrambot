@@ -1,33 +1,35 @@
-#from _curses import echo
-import telegram
 import django
 import os
+from App_Pkob.config import TOKEN,PORT
 os.environ['DJANGO_SETTINGS_MODULE']= 'PKOB.settings'
 django.setup()
 import datetime
 from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler, Filters, ConversationHandler
 from App_Pkob.models import People
-bot = telegram.Bot(token='5048441785:AAFabkWFfpMjXFIkw9ek0G1xuIwrTuGXtDY')
+import logging
+updater = Updater(TOKEN)
 
-updater = Updater('5048441785:AAFabkWFfpMjXFIkw9ek0G1xuIwrTuGXtDY', use_context=True)
 dispatcher = updater.dispatcher
 Ic, Phone = range(2)
 print("test")
 msgphone = ''
 
 
-def start(update:updater, context: CallbackContext):
+def start(update: updater,):
     print('starting')
     update.message.reply_text("hello,welcome to the pkob bot")
     update.message.reply_text("Please enter your ic number ")
     return Ic
 
 
-def ic(update: updater, context: CallbackContext):
+def ic(update: updater,):
     global msgic
     msgic = update.message.text
-    if not People.objects.filter(IcNo=msgic).exists():
-        update.message.reply_text("IC number entered does not exist in our records,Please reenter your IC number  ")
+    if msgic == "/cancel":
+        update.message.reply_text("Process cancelled ,Thank you ")
+        return ConversationHandler.END
+    elif not People.objects.filter(IcNo=msgic).exists():
+        update.message.reply_text("IC number entered does not exist in our records,Please try again")
         return Ic
     else:
         print("ic :", msgic)
@@ -35,12 +37,15 @@ def ic(update: updater, context: CallbackContext):
         return Phone
 
 
-def phone(update:updater, context: CallbackContext):
+def phone(update: updater,):
     msgphone = update.message.text
     print("phone :", msgphone)
     print("icno :", msgic)
-    if not People.objects.filter(Phone=msgphone).exists():
-        update.message.reply_text("Phone number entered does not exist in our records,Please reenter your phone number ")
+    if msgic == "/cancel":
+        update.message.reply_text("Process cancelled ,Thank you ")
+        return ConversationHandler.END
+    elif not People.objects.filter(Phone=msgphone).exists():
+        update.message.reply_text("Phone number entered does not exist in our records,Please try again")
         return Phone
     else:
         update.message.reply_text("Done ")
@@ -67,24 +72,24 @@ def user_input(icno, phoneno , update: updater):
         return update.message.reply_text("User does not exist ")
 
 
-
 def calculateage(ic):
         current = datetime.datetime.now().year
         test = ic[-4]
-        year=''
+        year = ''
         if test == "0":
-           year =(("20" + str(ic)[:2]).replace(",", ""))
-           print(year)
+            year = (("20" + str(ic)[:2]).replace(",", ""))
+            print(year)
         elif test == '5' or test == "6" or test == '7':
-            year=(("19" + str(ic)[:2]).replace(",", ""))
+            year = (("19" + str(ic)[:2]).replace(",", ""))
 
         age = current - int(year)
         print(age)
         return age
 
 
-def done(update: updater, context: CallbackContext):
+def done(update: updater,):
     update.message.reply_text("Thank you ")
+    return ConversationHandler.END
 
 
 conv_handler = ConversationHandler(
@@ -94,14 +99,14 @@ conv_handler = ConversationHandler(
         Phone: [MessageHandler(filters=None, callback=phone)],
 
     },
-    fallbacks=[CommandHandler("Done", done)]
+    fallbacks=[CommandHandler("cancel", done)]
 )
 dispatcher.add_handler(conv_handler)
 
-
-updater.start_polling()
+updater.start_webhook("0.0.0.0", PORT, TOKEN, webhook_url="https://pkobweb.herokuapp.com/"+TOKEN)
+# updater.start_polling()
 updater.idle()
-import logging
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                      level=logging.INFO)
 

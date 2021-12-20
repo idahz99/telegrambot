@@ -105,9 +105,8 @@ dispatcher.add_handler(conv_handler)
 
 updater.start_webhook(listen="0.0.0.0",
                       port=PORT,
-                      url_path=TOKEN,)
-                      # webhook_url="https://pkobweb.herokuapp.com/"+TOKEN)
-updater.bot.set_webhook("https://pkobweb.herokuapp.com//{}", TOKEN)
+                      url_path=TOKEN,
+                      webhook_url="https://pkobweb.herokuapp.com/"+TOKEN)
 
 
 updater.idle()

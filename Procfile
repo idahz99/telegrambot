@@ -1,2 +1,2 @@
 web: gunicorn PKOB.wsgi
-worker: python telegrambot.py
+worker: python  App_Pkob\telegrambot.py

@@ -12,6 +12,8 @@ updater = Updater(TOKEN)
 dispatcher = updater.dispatcher
 Ic, Phone = range(2)
 print("test")
+print(PORT)
+
 msgphone = ''
 
 
@@ -108,7 +110,7 @@ updater.start_webhook(listen="0.0.0.0",
                       url_path=TOKEN,
                       webhook_url="https://pkobweb.herokuapp.com/"+TOKEN)
 
-
+# updater.start_polling()
 updater.idle()
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',

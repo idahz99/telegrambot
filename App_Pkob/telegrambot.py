@@ -17,14 +17,14 @@ print(TOKEN)
 msgphone = ''
 
 
-def start(update: updater,):
+def start(update: updater):
     print('starting')
     update.message.reply_text("hello,welcome to the pkob bot")
     update.message.reply_text("Please enter your ic number ")
     return Ic
 
 
-def ic(update: updater,):
+def ic(update: updater):
     global msgic
     msgic = update.message.text
     if msgic == "/cancel":
@@ -39,7 +39,7 @@ def ic(update: updater,):
         return Phone
 
 
-def phone(update: updater,):
+def phone(update: updater):
     msgphone = update.message.text
     print("phone :", msgphone)
     print("icno :", msgic)
@@ -89,7 +89,7 @@ def calculateage(ic):
         return age
 
 
-def done(update: updater,):
+def done(update: updater):
     update.message.reply_text("Thank you ")
     return ConversationHandler.END
 

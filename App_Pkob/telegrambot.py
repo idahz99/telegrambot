@@ -13,7 +13,7 @@ dispatcher = updater.dispatcher
 Ic, Phone = range(2)
 print("test")
 print(PORT)
-
+print(TOKEN)
 msgphone = ''
 
 

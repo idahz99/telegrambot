@@ -91,7 +91,7 @@ background-color:#B67F2D ;
         <td>{{ people.IcNo}}</td>
         <td> {{ people.Name }}</td>
         <td>{{ people.Phone}}</td>
-        <td> {{year2.pop}}</td>
+        <td> {{Ages.pop}}</td>
         <td><a href="{% url "person-info" people.IcNo %}"><button style="border-radius: 10px; height: 30px;width:50px ; color:#B67F2D "  type="button"  >Edit</button></a></td>
 
         <td><a href="{% url "delete-person" people.IcNo %}"><button style="border-radius: 10px; height: 30px;width:50px ; color:Red "  type="button" onclick="return confirm('Are you sure you want to delete this villager ?')">Delete </button></a></td>

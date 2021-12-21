@@ -43,7 +43,8 @@ def peopleinfo_report(request):
     print(year2);
     people_list = People.objects.all()
     print(people_list);
-    return render(request, 'App_Pkob/peopleInfo_report.html', context={'people_list': people_list, 'year2': year2})
+    return render(request, 'App_Pkob/peopleInfo_report.html', context={'people_list': people_list,
+                                                                       'year2': year2.reverse()})
 
 
 def edit(request):

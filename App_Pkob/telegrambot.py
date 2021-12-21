@@ -24,7 +24,7 @@ def start(update: updater,context):
     return Ic
 
 
-def ic(update: updater):
+def ic(update: updater,context):
     global msgic
     msgic = update.message.text
     if msgic == "/cancel":
@@ -39,7 +39,7 @@ def ic(update: updater):
         return Phone
 
 
-def phone(update: updater):
+def phone(update: updater,context):
     msgphone = update.message.text
     print("phone :", msgphone)
     print("icno :", msgic)

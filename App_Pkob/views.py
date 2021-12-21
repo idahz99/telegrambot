@@ -39,12 +39,11 @@ def peopleinfo_report(request):
             year2.append(("19" + str(yeart)[:2]).replace(",", ""))
             print(datetime.datetime.now().month)
 
-    year2[:] = [current - int(getyear) for getyear in year2]
+    year2[:] = [current - int(getyear) for getyear in year2].reverse()
     print(year2);
     people_list = People.objects.all()
     print(people_list);
-    return render(request, 'App_Pkob/peopleInfo_report.html', context={'people_list': people_list,
-                                                                       'year2': year2.reverse()})
+    return render(request, 'App_Pkob/peopleInfo_report.html', context={'people_list': people_list, 'year2': year2})
 
 
 def edit(request):

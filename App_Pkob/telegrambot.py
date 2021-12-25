@@ -43,7 +43,7 @@ def phone(update: updater,context):
     msgphone = update.message.text
     print("phone :", msgphone)
     print("icno :", msgic)
-    if msgic == "/cancel":
+    if msgphone == "/cancel":
         update.message.reply_text("Process cancelled ,Thank you ")
         return ConversationHandler.END
     elif not People.objects.filter(Phone=msgphone).exists():

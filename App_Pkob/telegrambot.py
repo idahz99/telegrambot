@@ -43,11 +43,15 @@ def phone(update: updater,context):
     msgphone = update.message.text
     print("phone :", msgphone)
     print("icno :", msgic)
+    test = People.objects.get(IcNo=msgic)
     if msgphone == "/cancel":
         update.message.reply_text("Process cancelled ,Thank you ")
         return ConversationHandler.END
     elif not People.objects.filter(Phone=msgphone).exists():
         update.message.reply_text("Phone number entered does not exist in our records,Please try again")
+        return Phone
+    elif not test.Phone == msgphone:
+        update.message.reply_text("Incorrect phone number")
         return Phone
     else:
         update.message.reply_text("Done ")
@@ -105,10 +109,7 @@ conv_handler = ConversationHandler(
 )
 dispatcher.add_handler(conv_handler)
 
-# updater.start_webhook(listen="0.0.0.0",
-#                       port=PORT,
-#                       url_path=TOKEN,
-#                       webhook_url="https://pkobweb.herokuapp.com/"+TOKEN)
+
 
 updater.start_polling()
 updater.idle()

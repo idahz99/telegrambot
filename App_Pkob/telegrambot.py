@@ -51,7 +51,7 @@ def phone(update: updater,context):
         update.message.reply_text("Phone number entered does not exist in our records,Please try again")
         return Phone
     elif not test.Phone == msgphone:
-        update.message.reply_text("Incorrect phone number")
+        update.message.reply_text("Incorrect phone number,please try again")
         return Phone
     else:
         update.message.reply_text("Done ")

@@ -9,7 +9,13 @@
 ## Introduction
 Pkob telegram bot is an extension of the Pusat Kawalan Operasi Bencana website.The telegram bot retrives data from the postgres database and returns the information for matching ic number and phone number.Telegram was made using Botfather and the wrapper used is the python-telegram-bot .
 ## Deployment Guide
-
+1.Create a telegram bot through botfather.
+2.choose telegram bot wrapper
+3.Create telegram bot python file with code
+4.Add worker for the telegram bot in Procfile
+5.Create config file to capture the TOKEN and Port.
+6.deploy file to app on heroku
+7.run web and worker dyno
 ## Result/Output (Screenshot of the output)
 ![img.png](images/img.png)
 ![img_1.png](images/img_1.png)
